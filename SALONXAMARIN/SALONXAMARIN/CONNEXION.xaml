@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SALONXAMARIN.CONNEXION">
+
+    <Grid VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <!-- Ajoutez plus de lignes si nécessaire -->
+        </Grid.RowDefinitions>
+
+        <!-- Ajoutez ici vos éléments à centrer -->
+        <Image Source="https://res.cloudinary.com/mediaschool/image/upload/v1/Iris%20images/LOGO_960x470_AVR2020_V2_IRIS_qffam0" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />
+        <Entry x:Name="UsernameEntry" Placeholder="Nom d'utilisateur" Grid.Row="1" />
+        <Entry x:Name="PasswordEntry" Placeholder="Mot de passe" IsPassword="True" Grid.Row="2" />
+        <Button Text="Se connecter" Clicked="OnLoginButtonClicked" Grid.Row="3" />
+        <!-- Autres éléments -->
+
+        <!-- Pour ajouter le bouton "Je n'ai pas de compte" au centre -->
+        <Button Text="Je n'ai pas de compte" Clicked="OnCreateAccountButtonClicked" Grid.Row="4" />
+    </Grid>
+
+</ContentPage>

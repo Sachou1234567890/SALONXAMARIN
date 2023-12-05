@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             x:Class="SALONXAMARIN.INSCRIPTION">
+
+    <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+        <Image Source="https://res.cloudinary.com/mediaschool/image/upload/v1/Iris%20images/LOGO_960x470_AVR2020_V2_IRIS_qffam0" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />
+        <!-- Formulaire d'inscription -->
+        <Entry Placeholder="Nom d'utilisateur" x:Name="UsernameEntry" />
+        <Entry Placeholder="Adresse e-mail" x:Name="EmailEntry" />
+        <Entry Placeholder="Nom" x:Name="NomEntry" />
+        <Entry Placeholder="Prenom" x:Name="PrenomEntry" />
+        <Entry Placeholder="Societe" x:Name="SocieteEntry" />
+        <Label Text="Date de Naissance" />
+        <DatePicker x:Name="BirthDatePicker" MaximumDate="{x:Static sys:DateTime.Now}" />
+        <Entry Placeholder="Mot de passe" x:Name="PasswordEntry" IsPassword="True" />
+        <Entry Placeholder="Confirmer le mot de passe" x:Name="ConfirmPasswordEntry" IsPassword="True" />
+
+        <Button Text="S'inscrire" Clicked="OnRegisterButtonClicked" />
+
+        <ActivityIndicator x:Name="ActivityIndicator" IsVisible="False" IsRunning="False" />
+
+        <Label Text="Erreur d'inscription" x:Name="ErrorLabel" IsVisible="False" TextColor="Red" />
+
+        <Button Text="J'ai déjà un compte" Clicked="OnAlreadyHaveAccountButtonClicked" />
+    </StackLayout>
+
+</ContentPage>
