@@ -4,26 +4,36 @@
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
              x:Class="SALONXAMARIN.INSCRIPTION">
 
-    <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
-        <Image Source="https://res.cloudinary.com/mediaschool/image/upload/v1/Iris%20images/LOGO_960x470_AVR2020_V2_IRIS_qffam0" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />
+    <ScrollView>
+    <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Padding="20">
+        <Image Source="SALONXAMARIN/SALONXAMARIN.Android/Resources/drawable/logo.png"               HorizontalOptions="CenterAndExpand"
+               VerticalOptions="CenterAndExpand"
+               HeightRequest="100"
+               WidthRequest="200" />
+
         <!-- Formulaire d'inscription -->
-        <Entry Placeholder="Nom d'utilisateur" x:Name="UsernameEntry" />
-        <Entry Placeholder="Adresse e-mail" x:Name="EmailEntry" />
-        <Entry Placeholder="Nom" x:Name="NomEntry" />
-        <Entry Placeholder="Prenom" x:Name="PrenomEntry" />
-        <Entry Placeholder="Societe" x:Name="SocieteEntry" />
-        <Label Text="Date de Naissance" />
-        <DatePicker x:Name="BirthDatePicker" MaximumDate="{x:Static sys:DateTime.Now}" />
-        <Entry Placeholder="Mot de passe" x:Name="PasswordEntry" IsPassword="True" />
-        <Entry Placeholder="Confirmer le mot de passe" x:Name="ConfirmPasswordEntry" IsPassword="True" />
+        <Entry Placeholder="Nom d'utilisateur" x:Name="UsernameEntry" Margin="0,5,0,5" />
+        <Entry Placeholder="Adresse e-mail" x:Name="EmailEntry" Margin="0,5,0,5" />
+        <Entry Placeholder="Nom" x:Name="NomEntry" Margin="0,5,0,5" />
+        <Entry Placeholder="Prenom" x:Name="PrenomEntry" Margin="0,5,0,5" />
+        <Entry Placeholder="Societe" x:Name="SocieteEntry" Margin="0,5,0,5" />
 
-        <Button Text="S'inscrire" Clicked="OnRegisterButtonClicked" />
+        <Label Text="Date de Naissance" Margin="0,5,0,5" />
+        <DatePicker x:Name="BirthDatePicker"
+                    MaximumDate="{x:Static sys:DateTime.Now}"
+                    Margin="0,5,0,5" />
 
-        <ActivityIndicator x:Name="ActivityIndicator" IsVisible="False" IsRunning="False" />
+        <Entry Placeholder="Mot de passe" x:Name="PasswordEntry" IsPassword="True" Margin="0,5,0,5" />
+        <Entry Placeholder="Confirmer le mot de passe" x:Name="ConfirmPasswordEntry" IsPassword="True" Margin="0,5,0,5" />
 
-        <Label Text="Erreur d'inscription" x:Name="ErrorLabel" IsVisible="False" TextColor="Red" />
+        <Button Text="S'inscrire" Clicked="OnRegisterButtonClicked" BackgroundColor="#004AAD" TextColor="White" Margin="0,10,0,0" />
 
-        <Button Text="J'ai déjà un compte" Clicked="OnAlreadyHaveAccountButtonClicked" />
+        <ActivityIndicator x:Name="ActivityIndicator" IsVisible="False" IsRunning="False" Margin="0,10,0,0" />
+
+        <Label Text="Erreur d'inscription" x:Name="ErrorLabel" IsVisible="False" TextColor="Red" Margin="0,10,0,0" />
+
+        <Button Text="J'ai déjà un compte" Clicked="OnAlreadyHaveAccountButtonClicked" BackgroundColor="#004AAD" TextColor="White" Margin="0,10,0,0" />
     </StackLayout>
+    </ScrollView>
 
 </ContentPage>

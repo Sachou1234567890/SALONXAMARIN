@@ -18,6 +18,8 @@ namespace SALONXAMARIN
 
             // Initialiser la connexion Firebase
             firebase = new FirebaseClient("https://projet-xamarin-default-rtdb.firebaseio.com/");
+            NavigationPage.SetHasNavigationBar(this, false);
+            NavigationPage.SetHasBackButton(this, false);
         }
 
         private async void OnRegisterButtonClicked(object sender, EventArgs e)
@@ -122,10 +124,10 @@ namespace SALONXAMARIN
             await firebase.Child("Persons").Child(personId).PutAsync(newPerson);
         }
 
-        private void OnAlreadyHaveAccountButtonClicked(object sender, EventArgs e)
+        private async void OnAlreadyHaveAccountButtonClicked(object sender, EventArgs e)
         {
-            // Naviguer vers la page de connexion
-            // Example: await Navigation.PushAsync(new LoginPage());
+
+            await Navigation.PushAsync(new CONNEXION());
         }
     }
 }

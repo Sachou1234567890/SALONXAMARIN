@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SALONXAMARIN.UPDATEUSER">
+
+    <StackLayout>
+        <!-- Ajoutez des champs d'interface utilisateur (Entry) pour permettre à l'utilisateur de saisir ou de modifier des informations -->
+        <Label Text="Nom" />
+        <Entry x:Name="nomEntry1" Placeholder="Entrez votre nom" />
+
+        <Label Text="Prénom" />
+        <Entry x:Name="prenomEntry1" Placeholder="Entrez votre prénom" />
+
+        <Label Text="Email" />
+        <Entry x:Name="emailEntry1" Placeholder="Entrez votre email" />
+
+        <!-- Ajoutez d'autres champs au besoin -->
+
+        <!-- Ajoutez un bouton pour déclencher la mise à jour -->
+        <Button Text="Mettre à jour" Clicked="OnUpdateButtonClicked" />
+    </StackLayout>
+
+</ContentPage>

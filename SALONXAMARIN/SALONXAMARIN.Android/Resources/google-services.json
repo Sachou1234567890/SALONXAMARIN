@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "184794799727",
+    "firebase_url": "https://projet-xamarin-default-rtdb.firebaseio.com",
+    "project_id": "projet-xamarin",
+    "storage_bucket": "projet-xamarin.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:184794799727:android:5b5ac119248f461019379a",
+        "android_client_info": {
+          "package_name": "com.salonxamarin.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAf6K97s994YE1eJZ_v0zKOP88UoC6aox8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

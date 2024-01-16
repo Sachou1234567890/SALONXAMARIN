@@ -16,6 +16,8 @@ namespace SALONXAMARIN
         public CONNEXION()
         {
             InitializeComponent();
+            NavigationPage.SetHasNavigationBar(this, false);
+            NavigationPage.SetHasBackButton(this, false);
 
             // Initialiser la connexion Firebase
             firebase = new FirebaseClient("https://projet-xamarin-default-rtdb.firebaseio.com/");
@@ -47,7 +49,7 @@ namespace SALONXAMARIN
                     if (VerifyPassword(password, user.Password))
                     {
                         // Connexion réussie
-                        await Navigation.PushAsync(new NavigationPage(new MainPage()));
+                        await Navigation.PushAsync(new UPDATEUSER(user));
                     }
                     else
                     {
@@ -107,7 +109,8 @@ namespace SALONXAMARIN
         }
         private async void OnCreateAccountButtonClicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new NavigationPage(new INSCRIPTION()));
+
+          await Navigation.PushAsync(new INSCRIPTION());
         }
     }
 }
