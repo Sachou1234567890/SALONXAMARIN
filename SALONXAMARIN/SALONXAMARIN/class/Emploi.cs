@@ -8,7 +8,6 @@ namespace SALONXAMARIN
         public string Titre { get; set; }
         public string Description { get; set; }
         public string[] Responsabilites { get; set; }        
-        public float Salaire_horaire { get; set; }
-        public bool Wishlist { get; set; } 
+        public float Salaire_horaire { get; set; }    
     }
 }

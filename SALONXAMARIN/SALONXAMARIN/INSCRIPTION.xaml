@@ -16,7 +16,23 @@
         <Entry Placeholder="Adresse e-mail" x:Name="EmailEntry" Margin="0,5,0,5" />
         <Entry Placeholder="Nom" x:Name="NomEntry" Margin="0,5,0,5" />
         <Entry Placeholder="Prenom" x:Name="PrenomEntry" Margin="0,5,0,5" />
-        <Entry Placeholder="Societe" x:Name="SocieteEntry" Margin="0,5,0,5" />
+        <Picker x:Name="SexePicker" Margin="0,5,0,5" Title="Sélectionnez votre sexe">
+            <Picker.ItemsSource>
+                <x:Array Type="{x:Type x:String}">
+                    <x:String>Sélectionnez votre sexe</x:String>
+                    <x:String>masculin</x:String>
+                    <x:String>féminin</x:String>
+                </x:Array>
+            </Picker.ItemsSource>
+        </Picker>
+
+
+
+
+
+
+
+            <Entry Placeholder="Societe" x:Name="SocieteEntry" Margin="0,5,0,5" />
 
         <Label Text="Date de Naissance" Margin="0,5,0,5" />
         <DatePicker x:Name="BirthDatePicker"

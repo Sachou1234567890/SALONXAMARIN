@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SALONXAMARIN.societe_pages.Postulants">
+<Grid>
+    <Grid.RowDefinitions>
+        <RowDefinition Height="*" />
+        <RowDefinition Height="Auto" />
+    </Grid.RowDefinitions>
+    
+    <ScrollView Grid.Row="0">
+        <StackLayout>
+            <Label x:Name="labelTitle" Text="Les Postulants" FontSize="Medium" TextColor="#5271FF" FontAttributes="Bold" HorizontalOptions="Center"/>
+
+            <!-- Liste des postulants -->
+            <StackLayout x:Name="stackLayout2" VerticalOptions="Center" HorizontalOptions="Center" Spacing="20">
+                <CollectionView ItemsSource="{Binding Postulants}" Margin="0">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Frame x:Name="postulant_item" BorderColor="Black" CornerRadius="5" WidthRequest="300">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnPostulantSelected" CommandParameter="{Binding .}" />
+                                </Frame.GestureRecognizers>
+                                <StackLayout Padding="10" Spacing="10" Margin="20,20,20,20">
+                                    <Label Text="{Binding Nom, StringFormat='Nom: {0}'}" FontAttributes="Bold" FontSize="20"  />
+                                <Label Text="{Binding Prenom, StringFormat='Prénom: {0}'}" FontAttributes="Bold" FontSize="20"  />
+                                <Label Text="{Binding Email, StringFormat='Email: {0}'}" FontAttributes="Bold" FontSize="20"  />
+                                        <Label Text="{Binding DateNaissance, StringFormat='Date de Naissance: {0}'}" FontAttributes="Bold" FontSize="20"  />
+                                    </StackLayout>
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </StackLayout>
+        </StackLayout>
+    </ScrollView>
+
+    <!-- Footer -->
+    <StackLayout x:Name="stackLayout3" Orientation="Horizontal"
+          VerticalOptions="End" HorizontalOptions="Center" Spacing="80"
+          Grid.Row="1">
+        <!-- Icon buttons -->
+            <ImageButton x:Name="home" Source="home.png" Padding="0" Margin="0" HeightRequest="40" WidthRequest="40" BackgroundColor="Transparent" Clicked="Societe_Home_Clicked" />
+            <ImageButton x:Name="messages"  Source="messages.png" Padding="0" Margin="0" HeightRequest="40" WidthRequest="40" BackgroundColor="Transparent" />
+        <ImageButton x:Name="notifications" Source="notifications.png" Padding="0" Margin="0" HeightRequest="60" WidthRequest="60" BackgroundColor="Transparent" />
+    </StackLayout>
+</Grid>
+</ContentPage>
