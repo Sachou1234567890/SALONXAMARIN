@@ -19,7 +19,4 @@
   <ItemGroup>
     <None Remove="class\" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="class\" />
-  </ItemGroup>
 </Project>

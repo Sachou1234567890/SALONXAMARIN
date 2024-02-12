@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SALONXAMARIN.Postes_acceuil">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <ScrollView Grid.Row="0">
+            <StackLayout>
+                <StackLayout x:Name="stackLayout1" Padding="20" Spacing="10">
+                    <Label Text="Rechercher un poste" FontSize="Medium" TextColor="#5271FF" FontAttributes="Bold"/>
+                    <Grid>
+                        <Entry x:Name="searchEntry" Placeholder="Rechercher un poste" HorizontalOptions="FillAndExpand" />
+                        <Image Source="{FileImageSource File='retour_bleu2.png'}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,5,0" HeightRequest="30" WidthRequest="30">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="RefreshButton_Clicked" />
+                                <!-- Add a TapGestureRecognizer to handle the refresh action -->
+                            </Image.GestureRecognizers>
+                        </Image>
+                    </Grid>
+                    <Button Text="Rechercher" Margin="0,0,0,5" BackgroundColor="#F0EC9B" Clicked="SearchButton_Clicked" />
+                </StackLayout>
+
+                <Label x:Name="labelTitle" Text="Tous les postes" FontSize="Medium" TextColor="#5271FF" FontAttributes="Bold" HorizontalOptions="Center"/>
+
+                <!-- Suggestions d'offres d'emploi au milieu -->
+                <StackLayout x:Name="stackLayout2" VerticalOptions="Center" HorizontalOptions="Center" Spacing="20">
+                    <CollectionView x:Name="collection_jobs" ItemsSource="{Binding Emplois}" Margin="0">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Frame x:Name="job_item" BorderColor="Black" CornerRadius="5" WidthRequest="300">
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="OnJobSelected" CommandParameter="{Binding .}" />
+                                    </Frame.GestureRecognizers>
+                                    <StackLayout Padding="10" Spacing="10" Margin="20,20,20,20">
+                                        <!-- Contenu de chaque Frame -->
+                                        <Label Text="{Binding Titre}" FontAttributes="Bold" FontSize="20" HorizontalOptions="Center" />
+                                        <Frame BorderColor="Gray" BackgroundColor="#F0EC9B" CornerRadius="5" Padding="5" Margin="0,5" HorizontalOptions="Center">
+                                            <Label FontAttributes="Bold" LineBreakMode="WordWrap" Text="{Binding Salaire_horaire, StringFormat='{}{0} euros de l\&apos;heure'}" HorizontalOptions="Center" VerticalOptions="Center" />
+                                        </Frame>
+                                        <StackLayout>
+                                            <Label Text="Description de l'emploi :" FontAttributes="Bold" HorizontalOptions="Center" />
+                                            <Label Text="{Binding Description}" HorizontalOptions="Center" />
+                                        </StackLayout>
+                                        <Image Source="{FileImageSource File='wishlist.png'}" HorizontalOptions="End" VerticalOptions="End" Margin="0,0,5,0" HeightRequest="30" WidthRequest="30">
+                                            <Image.GestureRecognizers>
+                                                <TapGestureRecognizer Tapped="AddToWishList"/>
+                                                <!-- Add a TapGestureRecognizer to handle the refresh action -->
+                                            </Image.GestureRecognizers>
+                                        </Image>
+                                    </StackLayout>
+                                </Frame>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+
+
+        <!-- Fixed icons at the bottom -->
+        <StackLayout x:Name="stackLayout3" Orientation="Horizontal"
+                     VerticalOptions="End" HorizontalOptions="Center" Spacing="80"
+                     Grid.Row="1">
+            <!-- Icon buttons -->
+            <ImageButton x:Name="profil" Source="profil.png" Padding="0" Margin="0" HeightRequest="40" WidthRequest="40" BackgroundColor="Transparent" Clicked="Profil_Clicked" />
+            <ImageButton x:Name="messages"  Source="messages.png" Padding="0" Margin="0" HeightRequest="40" WidthRequest="40" BackgroundColor="Transparent" />
+            <ImageButton x:Name="notifications" Source="notifications.png" Padding="0" Margin="0" HeightRequest="60" WidthRequest="60" BackgroundColor="Transparent" />
+        </StackLayout>
+    </Grid>
+</ContentPage>
