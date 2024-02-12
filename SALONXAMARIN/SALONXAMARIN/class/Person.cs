@@ -10,9 +10,12 @@ namespace SALONXAMARIN
         public string Email { get; set; }
         public string Nom { get; set; }
         public string Prenom { get; set; }
+        public string Sexe { get; set; }
         public string Societe { get; set; }
         public DateTime DateNaissance { get; set; }
         public string Password { get; set; }
+        public string CV_name { get; set; }        
+        public bool admin { get; set; }        
         // Ajoutez d'autres propriétés au besoin
     }
 }

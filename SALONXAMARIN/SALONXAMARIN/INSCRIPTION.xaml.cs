@@ -11,7 +11,7 @@ namespace SALONXAMARIN
     public partial class INSCRIPTION : ContentPage
     {
         FirebaseClient firebase;
-
+        private string selectedActualValue;
         public INSCRIPTION()
         {
             InitializeComponent();
@@ -20,12 +20,46 @@ namespace SALONXAMARIN
             firebase = new FirebaseClient("https://projet-xamarin-default-rtdb.firebaseio.com/");
             NavigationPage.SetHasNavigationBar(this, false);
             NavigationPage.SetHasBackButton(this, false);
+
+            // Subscribe to the event handler for selection change
+            SexePicker.SelectedIndexChanged += SexePicker_SelectedIndexChanged;
+
+            // Set the default selected item
+            SexePicker.SelectedIndex = 0; // Select "Sélectionnez votre sexe"
+        }
+        private void SexePicker_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Get the selected display value
+            string selectedDisplayValue = (string)SexePicker.SelectedItem;
+
+            // Map the selected display value to the corresponding actual value
+            this.selectedActualValue = GetActualValue(selectedDisplayValue);
+            //Console.WriteLine("this.selectedActualValue : " + this.selectedActualValue); // OK
+
+
+            // Use the selected actual value as needed
+            // For example, you can store it in a variable or pass it to a method
+            //string actualValue = selectedActualValue;
+        }
+
+        // Method to map display values to actual values
+        private string GetActualValue(string displayValue)
+        {
+            switch (displayValue)
+            {
+                case "masculin":
+                    return "masculin";
+                case "féminin":
+                    return "feminin";
+                default:
+                    return string.Empty;
+            }
         }
 
         private async void OnRegisterButtonClicked(object sender, EventArgs e)
         {
             // Vérifier si l'utilisateur existe déjà
-            string username = UsernameEntry.Text;
+            string username = UsernameEntry.Text;            
             bool userExists = await CheckIfUserExists(username);
 
             if (userExists)
@@ -48,8 +82,16 @@ namespace SALONXAMARIN
                 // Hacher le mot de passe avec un sel
                 string hashedPassword = HashPassword(PasswordEntry.Text);
 
+                // Enregistrer un admin
+                if (username.Equals("aa") && email.Equals("aa@gmail.com") )
+                {
+                    await RegisterAdmin(username, email, NomEntry.Text, PrenomEntry.Text, SocieteEntry.Text, BirthDatePicker.Date, hashedPassword);
+                }
                 // Enregistrer le nouvel utilisateur
-                await RegisterNewUser(username, email, NomEntry.Text, PrenomEntry.Text, SocieteEntry.Text, BirthDatePicker.Date, hashedPassword);
+                else
+                {
+                    await RegisterNewUser(username, email, NomEntry.Text, PrenomEntry.Text, this.selectedActualValue, SocieteEntry.Text, BirthDatePicker.Date, hashedPassword);
+                }
 
                 // Afficher un message de succès
                 await DisplayAlert("Succès", "Inscription réussie", "OK");
@@ -101,13 +143,14 @@ namespace SALONXAMARIN
             return firebasePersons.Any(item => item.Object.Name == username);
         }
 
-        private async Task RegisterNewUser(string username, string email, string nom, string prenom, string societe, DateTime birthDate, string password)
+        // inscription d'un admin (usage temporaire, juste pour créér des comptes admin)
+        private async Task RegisterAdmin(string username, string email, string nom, string prenom, string societe, DateTime birthDate, string password)
         {
             // Générer un nouvel identifiant pour l'utilisateur
             string personId = Guid.NewGuid().ToString();
 
-            // Créer un nouvel objet Person
-            Person newPerson = new Person
+            // Créer un nouvel objet Person avec le champ 'admin' mis à true
+            Person newAdmin = new Person
             {
                 PersonId = personId,
                 Name = username,
@@ -116,9 +159,39 @@ namespace SALONXAMARIN
                 Prenom = prenom,
                 Societe = societe,
                 DateNaissance = birthDate,
-                Password = password
-                // Ajoutez d'autres propriétés au besoin
+                Password = password,
+                CV_name = "",
+                admin = true
             };
+
+            // Enregistrer le nouvel administrateur dans la base de données Firebase
+            await firebase.Child("Persons").Child(personId).PutAsync(newAdmin);
+        }
+
+        private async Task RegisterNewUser(string username, string email, string nom, string prenom, string sexe,
+            string societe, DateTime birthDate, string password)
+        {
+            // Générer un nouvel identifiant pour l'utilisateur
+            string personId = Guid.NewGuid().ToString();
+
+            Console.WriteLine("selectedActualValue = " + this.selectedActualValue);
+
+            // Créer un nouvel objet Person
+            Person newPerson = new Person
+            {                
+                PersonId = personId,
+                Name = username,
+                Email = email,
+                Nom = nom,
+                Prenom = prenom,
+                Sexe = this.selectedActualValue,
+                Societe = societe,
+                DateNaissance = birthDate,
+                Password = password,
+                CV_name = "",
+                admin = false,                                              
+                // Ajoutez d'autres propriétés au besoin
+        };
 
             // Enregistrer l'utilisateur dans la base de données Firebase
             await firebase.Child("Persons").Child(personId).PutAsync(newPerson);

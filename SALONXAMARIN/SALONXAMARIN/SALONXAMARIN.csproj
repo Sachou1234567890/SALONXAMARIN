@@ -12,11 +12,45 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="FirebaseStorage.net" Version="1.0.3" />
+    <PackageReference Include="Syncfusion.Xamarin.SfPdfViewer" Version="24.1.46" />
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.2622" />
     <PackageReference Include="Xamarin.Essentials" Version="1.8.1" />
     <PackageReference Include="FirebaseDatabase.net" Version="4.2.0" />
+    <PackageReference Include="Xamarin.Forms.SaveOpenPDFPackage" Version="1.0.0" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="class\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="societe_pages\MainPage_societe.xaml.cs">
+      <DependentUpon>Profil_societe.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="societe_pages\Postulants.xaml.cs">
+      <DependentUpon>Candidats.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Update="candidats_pages\Postes_en_attente.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="societe_pages\Candidatures.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="societe_pages\Employes.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="societe_pages\MainPage_societe.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="candidats_pages\Profil.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="societe_pages\Postulants.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="test.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>

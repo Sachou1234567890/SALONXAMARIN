@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SALONXAMARIN.candidats_pages.Profil">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <ScrollView Grid.Row="0">
+            <StackLayout>
+                <StackLayout HorizontalOptions="End" VerticalOptions="Start" Padding="10" Margin="0,0,0,20">
+                    <Button Text="Déconnexion" Clicked="Logout_Clicked" BackgroundColor="#5271FF" TextColor="White" CornerRadius="8" />
+                </StackLayout>
+
+                <!-- Coordonnées personnelles -->
+                <Label Text="Coordonnées Personnelles" FontSize="Medium" TextColor="#5271FF" FontAttributes="Bold" HorizontalOptions="Center" />
+                <StackLayout>
+                    <Label>
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="Nom :" FontAttributes="Bold" />
+                                <Span x:Name="nom" Text="" />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Label>
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="Prénom :" FontAttributes="Bold" />
+                                <Span x:Name="prenom" Text="" />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Label>
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="Email :" FontAttributes="Bold" />
+                                <Span x:Name="email" Text="" />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Label>
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="Société :" FontAttributes="Bold" />
+                                <Span x:Name="societe" Text="" />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </StackLayout>
+
+                <!-- Liste des candidatures -->
+                <Label Text="Liste des candidatures" FontSize="Medium" TextColor="#5271FF" FontAttributes="Bold" HorizontalOptions="Center" Margin="0,20,0,0"/>
+
+                <!--4 boutons pour les candidatures-->
+                <FlexLayout Direction="Row" JustifyContent="SpaceAround" AlignItems="Center" VerticalOptions="Center" Margin="0,10,0,20">
+                    <Button Text="En attente" BackgroundColor="#F0EC9B" FontSize="Default" CornerRadius="10" WidthRequest="125" HeightRequest="40" Clicked="Postes_en_attente_Clicked" />
+                    <Button Text="Acceptées" BackgroundColor="#F0EC9B" FontSize="Default" CornerRadius="10" WidthRequest="125" HeightRequest="40" />
+                </FlexLayout>
+                <FlexLayout Direction="Row" JustifyContent="SpaceAround" AlignItems="Center" VerticalOptions="Center" Margin="0,10,0,20">
+                    <Button Text="Refusées" BackgroundColor="#F0EC9B" FontSize="Default" CornerRadius="10" WidthRequest="125" HeightRequest="40" />
+                    <!--<Button Text="Enregistrées" BackgroundColor="#F0EC9B" FontSize="Default" />-->
+                    <Button Text="Enregistrées" BackgroundColor="#F0EC9B" FontSize="Default" CornerRadius="10" WidthRequest="125" HeightRequest="40" Clicked="Postes_enregistres_Clicked" />
+                </FlexLayout>
+
+                <!-- CV -->
+                <Label Text="mon CV" FontSize="Medium" TextColor="#5271FF" FontAttributes="Bold" HorizontalOptions="Center" Margin="0,20,0,0"/>
+
+                <!-- FlexLayout pour la gestion du fichier uploadé -->
+                <FlexLayout Direction="Row" JustifyContent="SpaceBetween" AlignItems="Center" Margin="0,10,0,0">
+                    <!-- Icone representant le type PDF -->
+                    <Image Source="pdf_type.png" Aspect="AspectFit" HeightRequest="20" WidthRequest="20" Margin="0,0,5,0"/>
+                    <!-- Label contenant le nom du fichier -->
+                    <Label x:Name="CVLabel" Text="Aucun fichier sélectionné" TextColor="Black" FontSize="16" FlexLayout.Grow="1">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="CVLabel_Tapped" />
+                        </Label.GestureRecognizers>
+                    </Label>
+
+                    <!-- ImageButton pour uploader/remplacer le fichier -->
+                    <ImageButton Source="replace.png" Aspect="AspectFit" HeightRequest="30" WidthRequest="30" Margin="0,0,5,0" Clicked="OnRemplacerIconClicked" />
+                </FlexLayout>
+
+                <!-- une Popup pour afficher ou enregistrer le fichier -->
+                <ContentView x:Name="popupView" IsVisible="False" BackgroundColor="Transparent" >
+                    <!-- Content inside the popup -->
+                    <StackLayout BackgroundColor="White" Padding="10">
+                        <Button x:Name="afficherButton" Text="Afficher" Clicked="AfficherButton_Clicked" />
+                        <Button x:Name="enregistrerButton" Text="Enregistrer" Clicked="Enregistrer_Button_Clicked" />
+                    </StackLayout>
+                </ContentView>
+
+                <!-- Bouton de sauvegarde des modifications -->
+                <!--<Button Text="Enregistrer"/>-->
+            </StackLayout>
+        </ScrollView>
+
+        <!-- Fixed icons at the bottom -->
+        <StackLayout x:Name="stackLayout3" Orientation="Horizontal"
+        VerticalOptions="End" HorizontalOptions="Center" Spacing="80"
+        Grid.Row="1">
+            <!-- Icon buttons -->
+            <ImageButton x:Name="home"  Source="home.png" Padding="0" Margin="0" HeightRequest="40" WidthRequest="40" BackgroundColor="Transparent" Clicked="Home_Clicked"/>
+            <ImageButton x:Name="profil" Source="profil.png" Padding="0" Margin="0" HeightRequest="40" WidthRequest="40" BackgroundColor="Transparent" Clicked="Profil_Clicked" />
+            <ImageButton x:Name="messages"  Source="messages.png" Padding="0" Margin="0" HeightRequest="40" WidthRequest="40" BackgroundColor="Transparent" />
+            <ImageButton x:Name="notifications" Source="notifications.png" Padding="0" Margin="0" HeightRequest="60" WidthRequest="60" BackgroundColor="Transparent" />
+        </StackLayout>
+    </Grid>
+
+</ContentPage>

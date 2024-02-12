@@ -4,15 +4,13 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Threading.Tasks;
 using Firebase.Database;
-using Firebase.Database.Query;
 using Xamarin.Forms;
 
 namespace SALONXAMARIN
 {
     public partial class CONNEXION : ContentPage
     {
-        FirebaseClient firebase;
-
+        FirebaseClient firebase;        
         public CONNEXION()
         {
             InitializeComponent();
@@ -48,8 +46,16 @@ namespace SALONXAMARIN
                     // Comparer le mot de passe haché
                     if (VerifyPassword(password, user.Password))
                     {
-                        // Connexion réussie
-                        await Navigation.PushAsync(new UPDATEUSER(user));
+                        if (user.Name.Equals("aa"))
+                        {
+                            await Navigation.PushAsync(new MainPage_societe());
+                        }
+                        else
+                        {
+                            // Connexion réussie
+                            await Navigation.PushAsync(new candidats_pages.Postes_acceuil(user));
+                            //await Navigation.PushAsync(new UPDATEUSER(user));
+                        }
                     }
                     else
                     {
@@ -66,6 +72,7 @@ namespace SALONXAMARIN
             catch (Exception ex)
             {
                 // Gérer les exceptions (afficher ou journaliser)
+                System.Diagnostics.Debug.WriteLine($"An error occurred: {ex.Message}");
                 await DisplayAlert("Erreur", $"Une erreur s'est produite : {ex.Message}", "OK");
             }
         }
@@ -101,9 +108,13 @@ namespace SALONXAMARIN
                 Email = item.Object.Email,
                 Nom = item.Object.Nom,
                 Prenom = item.Object.Prenom,
+                Sexe = item.Object.Sexe,
                 Societe = item.Object.Societe,
                 DateNaissance = item.Object.DateNaissance,
-                Password = item.Object.Password
+                Password = item.Object.Password,
+                CV_name = item.Object.CV_name,                
+                admin = item.Object.admin,
+                //lettre_name  = item.Object.lettre_name 
                 // Ajoutez d'autres propriétés au besoin
             }).ToList();
         }

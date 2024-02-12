@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SALONXAMARIN.societe_pages.Candidatures"             
+>
+   
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <ScrollView Grid.Row="0">
+            <StackLayout x:Name="mainStackLayout">
+                <Label x:Name="labelTitle" Text="Les Postulations de ..." FontSize="Medium" TextColor="#5271FF" FontAttributes="Bold" HorizontalOptions="Center"/>
+
+                <!-- DEBUT Liste des emplois postulés -->
+                <StackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="20">
+                    <CollectionView x:Name="candidatureCollectionView"  ItemsSource="{Binding Emplois}" Margin="0">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <StackLayout Orientation="Vertical" Padding="10">
+                                        <Label Text="{Binding Titre}" FontAttributes="Bold" FontSize="20" HorizontalOptions="Center" />
+                                        <Frame BorderColor="Gray" BackgroundColor="#F0EC9B" CornerRadius="5" Padding="5" Margin="0,5" HorizontalOptions="Center">
+                                            <Label FontAttributes="Bold" LineBreakMode="WordWrap" Text="{Binding Salaire_horaire, StringFormat='{}{0} euros de l\&apos;heure'}" HorizontalOptions="Center" VerticalOptions="Center" />
+                                        </Frame>
+                                        <Label Text="Description de l'emploi :" FontAttributes="Bold" HorizontalOptions="Center" />
+                                        <Label Text="{Binding Description}" HorizontalOptions="Center" />
+                                        <Label Text="mon CV" FontSize="Medium" TextColor="#5271FF" FontAttributes="Bold" HorizontalOptions="Center" Padding="0" Margin="0,20,0,50"/>
+                                        <FlexLayout Direction="Row" JustifyContent="SpaceBetween" AlignItems="Center" Padding="0">
+                                            <Image Source="pdf_type.png" Aspect="AspectFit" HeightRequest="20" WidthRequest="20" Margin="0,100,5,50"/>
+                                            <Label x:Name="CVLabel" Text="Aucun fichier sélectionné" TextColor="Black" FontSize="16" FlexLayout.Grow="1" Margin="0,100,0,50" >
+                                                <!--<Label.GestureRecognizers>
+                                                    <TapGestureRecognizer Tapped="CVLabel_Tapped" />
+                                                </Label.GestureRecognizers>-->
+                                            </Label>
+                                        </FlexLayout>
+                                    </StackLayout>
+                                </ViewCell>
+                            </DataTemplate>
+
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </StackLayout>
+            </StackLayout>
+            <!-- FIN Liste des emplois postulés -->
+        </ScrollView>
+
+        <!-- Footer -->
+        <StackLayout x:Name="stackLayout3" Orientation="Horizontal"
+          VerticalOptions="End" HorizontalOptions="Center" Spacing="80"
+          Grid.Row="1">
+            <!-- Icon buttons -->
+            <ImageButton x:Name="home" Source="home.png" Padding="0" Margin="0" HeightRequest="40" WidthRequest="40" BackgroundColor="Transparent" Clicked="Societe_Home_Clicked" />
+            <ImageButton x:Name="messages"  Source="messages.png" Padding="0" Margin="0" HeightRequest="40" WidthRequest="40" BackgroundColor="Transparent" />
+            <ImageButton x:Name="notifications" Source="notifications.png" Padding="0" Margin="0" HeightRequest="60" WidthRequest="60" BackgroundColor="Transparent" />
+        </StackLayout>
+    </Grid>
+</ContentPage>
