@@ -15,7 +15,8 @@ namespace SALONXAMARIN
         public DateTime DateNaissance { get; set; }
         public string Password { get; set; }
         public string CV_name { get; set; }        
-        public bool admin { get; set; }        
+        public bool admin { get; set; }
+        public string TicketType { get; set; }
         // Ajoutez d'autres propriétés au besoin
     }
 }

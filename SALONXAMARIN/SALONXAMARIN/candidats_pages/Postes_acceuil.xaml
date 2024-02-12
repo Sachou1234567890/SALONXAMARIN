@@ -70,8 +70,6 @@
             <!-- Icon buttons -->
             <ImageButton x:Name="home" Source="home.png" Padding="0" Margin="0" HeightRequest="40" WidthRequest="40" BackgroundColor="Transparent" Clicked="Home_Clicked" />
             <ImageButton x:Name="profil" Source="profil.png" Padding="0" Margin="0" HeightRequest="40" WidthRequest="40" BackgroundColor="Transparent" Clicked="Profil_Clicked" />
-            <ImageButton x:Name="messages"  Source="messages.png" Padding="0" Margin="0" HeightRequest="40" WidthRequest="40" BackgroundColor="Transparent" />
-            <ImageButton x:Name="notifications" Source="notifications.png" Padding="0" Margin="0" HeightRequest="60" WidthRequest="60" BackgroundColor="Transparent" />
         </StackLayout>
     </Grid>
 </ContentPage>

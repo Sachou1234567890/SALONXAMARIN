@@ -17,6 +17,7 @@ namespace SALONXAMARIN.candidats_pages
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Profil : ContentPage
     {
+        private string userId;
         private FirebaseClient firebase;
         private FirebaseStorage storage = new FirebaseStorage("projet-xamarin.appspot.com");
         private Person currentUser;
@@ -35,6 +36,7 @@ namespace SALONXAMARIN.candidats_pages
             prenom.Text = currentUser.Prenom;
             email.Text = currentUser.Email;
             societe.Text = currentUser.Societe;
+            
 
             // Call the asynchronous method to check the folder and set the label
             Device.BeginInvokeOnMainThread(async () => await CheckFolderAndSetLabelAsync());
@@ -122,6 +124,21 @@ namespace SALONXAMARIN.candidats_pages
             }
         }
 
+
+        private async Task<Person> GetUserFromDatabase(string userId)
+        {
+            FirebaseClient firebase = new FirebaseClient("https://projet-xamarin-default-rtdb.firebaseio.com/");
+
+            var userSnapshot = await firebase.Child("Persons").Child(userId).OnceSingleAsync<Person>();
+
+            return userSnapshot;
+        }
+
+        private async void UpdateUserButton_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new UPDATEUSER(currentUser.PersonId));
+        }
+
         private string ExtractFileNameFromPath(string filePath)
         {
             return Path.GetFileName(filePath);
@@ -198,6 +215,16 @@ namespace SALONXAMARIN.candidats_pages
                 Console.WriteLine("Exception in AfficherButton_Clicked: " + ex.ToString());
                 //await DisplayAlert("Error", "Exception: " + ex.Message, "OK");
             }            
+        }
+        private async void Place_Clicked(object sender, EventArgs e)
+        {
+            // Pass the PersonId to the Place page
+            await Navigation.PushAsync(new Place(currentUser.PersonId));
+        }
+        private async void entreprise_Clicked(object sender, EventArgs e)
+        {
+            // Pass the PersonId to the Place page
+            await Navigation.PushAsync(new entreprise());
         }
 
         private async Task SaveToFirebaseStorage(MemoryStream stream, string fileName)

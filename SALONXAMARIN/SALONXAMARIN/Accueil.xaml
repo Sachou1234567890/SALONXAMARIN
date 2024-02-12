@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="SALONXAMARIN.Accueil">
+
+
+    <ContentPage.Content>
+        
+        <StackLayout>
+            
+            <!-- En-tête de la page -->
+            <Label Text="Bienvenue au Salon Étudiant"
+                   HorizontalOptions="CenterAndExpand"
+                   FontSize="Large"
+                   Margin="0,20,0,10"/>
+
+            <!-- Image représentative du salon -->
+            <Image Source="SALONXAMARIN/SALONXAMARIN.Android/Resources/drawable/image.png"
+                   Aspect="AspectFill"
+                   HeightRequest="200"
+                   Margin="0,0,0,10"/>
+
+            <!-- Description du salon -->
+            <Label Text="Découvrez les opportunités éducatives, les entreprises partenaires, et bien plus encore. le lundi 18 juin 2024 à Paris"
+                   HorizontalOptions="CenterAndExpand"
+                   FontSize="Medium"
+                   Margin="20"/>
+
+            <!-- Bouton pour accéder à plus d'informations -->
+            <Button Text="En savoir plus"
+                    Clicked="EnSavoirPlus_Clicked"
+                    HorizontalOptions="Center"
+                    VerticalOptions="CenterAndExpand"
+                    Margin="0,20,0,0"
+                    Grid.Row="4" BackgroundColor="#004AAD" TextColor="White"/>
+
+        </StackLayout>
+        
+    </ContentPage.Content>
+</ContentPage>
+
+

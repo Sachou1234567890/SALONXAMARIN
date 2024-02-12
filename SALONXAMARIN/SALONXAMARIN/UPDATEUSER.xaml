@@ -1,23 +1,38 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
              x:Class="SALONXAMARIN.UPDATEUSER">
 
-    <StackLayout>
-        <!-- Ajoutez des champs d'interface utilisateur (Entry) pour permettre à l'utilisateur de saisir ou de modifier des informations -->
-        <Label Text="Nom" />
-        <Entry x:Name="nomEntry1" Placeholder="Entrez votre nom" />
+    <ScrollView>
+        <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Padding="20">
+            <Image Source="SALONXAMARIN/SALONXAMARIN.Android/Resources/drawable/logo.png"
+                   HorizontalOptions="CenterAndExpand"
+                   VerticalOptions="CenterAndExpand"
+                   HeightRequest="100"
+                   WidthRequest="200" />
 
-        <Label Text="Prénom" />
-        <Entry x:Name="prenomEntry1" Placeholder="Entrez votre prénom" />
+            <!-- Formulaire de mise à jour de l'utilisateur -->
+            <Label Text="Nom" />
+            <Entry x:Name="nomEntry1" Placeholder="Entrez votre nom" Margin="0,5,0,5" />
 
-        <Label Text="Email" />
-        <Entry x:Name="emailEntry1" Placeholder="Entrez votre email" />
+            <Label Text="Prénom" />
+            <Entry x:Name="prenomEntry1" Placeholder="Entrez votre prénom" Margin="0,5,0,5" />
 
-        <!-- Ajoutez d'autres champs au besoin -->
+            <Label Text="Email" />
+            <Entry x:Name="emailEntry1" Placeholder="Entrez votre email" Margin="0,5,0,5" />
 
-        <!-- Ajoutez un bouton pour déclencher la mise à jour -->
-        <Button Text="Mettre à jour" Clicked="OnUpdateButtonClicked" />
-    </StackLayout>
+            <!-- Ajoutez d'autres champs au besoin -->
+
+            <!-- Bouton pour déclencher la mise à jour -->
+            <Button Text="Mettre à jour" Clicked="OnUpdateButtonClicked" BackgroundColor="#004AAD" TextColor="White" Margin="0,10,0,0" />
+
+            <ActivityIndicator x:Name="ActivityIndicator" IsVisible="False" IsRunning="False" Margin="0,10,0,0" />
+
+            <Label Text="Erreur de mise à jour" x:Name="ErrorLabel" IsVisible="False" TextColor="Red" Margin="0,10,0,0" />
+
+            <Button Text="Retour" Clicked="OnBackButtonClicked" BackgroundColor="#004AAD" TextColor="White" Margin="0,10,0,0" />
+        </StackLayout>
+    </ScrollView>
 
 </ContentPage>

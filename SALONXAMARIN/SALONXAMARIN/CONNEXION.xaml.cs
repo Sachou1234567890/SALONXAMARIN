@@ -1,22 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Sockets;
 using System.Security.Cryptography;
 using System.Threading.Tasks;
 using Firebase.Database;
+using Firebase.Database.Query;
 using Xamarin.Forms;
 
 namespace SALONXAMARIN
 {
     public partial class CONNEXION : ContentPage
     {
-        FirebaseClient firebase;        
+        FirebaseClient firebase;
+
         public CONNEXION()
         {
             InitializeComponent();
-            NavigationPage.SetHasNavigationBar(this, false);
-            NavigationPage.SetHasBackButton(this, false);
-
             // Initialiser la connexion Firebase
             firebase = new FirebaseClient("https://projet-xamarin-default-rtdb.firebaseio.com/");
         }
@@ -46,16 +46,11 @@ namespace SALONXAMARIN
                     // Comparer le mot de passe haché
                     if (VerifyPassword(password, user.Password))
                     {
-                        if (user.Name.Equals("aa"))
-                        {
-                            await Navigation.PushAsync(new MainPage_societe());
-                        }
-                        else
-                        {
-                            // Connexion réussie
-                            await Navigation.PushAsync(new candidats_pages.Postes_acceuil(user));
-                            //await Navigation.PushAsync(new UPDATEUSER(user));
-                        }
+                        // Connexion réussie
+                        // Maintenant, nous devons obtenir l'ID de l'utilisateur
+                        string userId = user.PersonId; // Supposons que PersonId soit l'ID de l'utilisateur dans votre classe Person
+
+                        await Navigation.PushAsync(new candidats_pages.Profil(user));
                     }
                     else
                     {
@@ -72,7 +67,6 @@ namespace SALONXAMARIN
             catch (Exception ex)
             {
                 // Gérer les exceptions (afficher ou journaliser)
-                System.Diagnostics.Debug.WriteLine($"An error occurred: {ex.Message}");
                 await DisplayAlert("Erreur", $"Une erreur s'est produite : {ex.Message}", "OK");
             }
         }
@@ -108,20 +102,17 @@ namespace SALONXAMARIN
                 Email = item.Object.Email,
                 Nom = item.Object.Nom,
                 Prenom = item.Object.Prenom,
-                Sexe = item.Object.Sexe,
                 Societe = item.Object.Societe,
                 DateNaissance = item.Object.DateNaissance,
                 Password = item.Object.Password,
-                CV_name = item.Object.CV_name,                
-                admin = item.Object.admin,
-                //lettre_name  = item.Object.lettre_name 
+                TicketType = item.Object.TicketType
                 // Ajoutez d'autres propriétés au besoin
             }).ToList();
         }
         private async void OnCreateAccountButtonClicked(object sender, EventArgs e)
         {
 
-          await Navigation.PushAsync(new INSCRIPTION());
+            await Navigation.PushAsync(new INSCRIPTION());
         }
     }
 }

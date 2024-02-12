@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SALONXAMARIN.Place">
+
+    <StackLayout Padding="15">
+        <Label Text="Réserver mon billet pour venir" FontSize="Title" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Margin="0,20,0,20" />
+
+        <!-- Afficher le nom de l'utilisateur connecté -->
+        <Label Text="{Binding UserName}" FontSize="Subtitle" HorizontalOptions="CenterAndExpand" Margin="0,0,0,20" />
+
+        <!-- Boutons de réservation par catégorie -->
+        <StackLayout Orientation="Vertical" VerticalOptions="CenterAndExpand">
+            <Button Text="PLACE ADULTE 10 EUR" Clicked="OnReservationCat1Clicked" Margin="5" BackgroundColor="#5271FF" TextColor="White"/>
+            <Button Text="PLACE SENIOR 8 EUR" Clicked="OnReservationCat2Clicked" Margin="5" BackgroundColor="#5271FF" TextColor="White"/>
+            <Button Text="PLACE ETUDIANTE (Sous présentation d'un justificatif) GRATUIT" Clicked="OnReservationCat3Clicked" Margin="5" BackgroundColor="#5271FF" TextColor="White"/>
+        </StackLayout>
+    </StackLayout>
+
+
+</ContentPage>
+
+

@@ -51,6 +51,10 @@
                         </Label.FormattedText>
                     </Label>
                 </StackLayout>
+                <Button Text="Mettre à jour l'utilisateur" Clicked="UpdateUserButton_Clicked" BackgroundColor="#004AAD" TextColor="White" Margin="0,20,0,0" />
+                <Button Text="Acheter une place" Clicked="Place_Clicked" BackgroundColor="#004AAD" TextColor="White" Margin="0,20,0,0" />
+                <Button Text="Entreprise présente" Clicked="entreprise_Clicked" BackgroundColor="#004AAD" TextColor="White" Margin="0,20,0,0" />
+
 
                 <!-- Liste des candidatures -->
                 <Label Text="Liste des candidatures" FontSize="Medium" TextColor="#5271FF" FontAttributes="Bold" HorizontalOptions="Center" Margin="0,20,0,0"/>
@@ -105,8 +109,6 @@
             <!-- Icon buttons -->
             <ImageButton x:Name="home"  Source="home.png" Padding="0" Margin="0" HeightRequest="40" WidthRequest="40" BackgroundColor="Transparent" Clicked="Home_Clicked"/>
             <ImageButton x:Name="profil" Source="profil.png" Padding="0" Margin="0" HeightRequest="40" WidthRequest="40" BackgroundColor="Transparent" Clicked="Profil_Clicked" />
-            <ImageButton x:Name="messages"  Source="messages.png" Padding="0" Margin="0" HeightRequest="40" WidthRequest="40" BackgroundColor="Transparent" />
-            <ImageButton x:Name="notifications" Source="notifications.png" Padding="0" Margin="0" HeightRequest="60" WidthRequest="60" BackgroundColor="Transparent" />
         </StackLayout>
     </Grid>
 
