@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SALONXAMARIN.candidats_pages.Postes_refuses">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Label x:Name="Postes_acceptes_null" Text="pour l'instant, vous n'avez aucune postulation refusée" FontAttributes="Bold" FontSize="40" 
+               HorizontalOptions="Center" VerticalOptions="Center" Grid.Row="0" IsVisible="false" Margin="50,0,0,0"/>
+        
+        <ScrollView x:Name="ScrollView_refuses" Grid.Row="0">
+            <StackLayout>
+                <Label x:Name="labelTitle" Text="Les postes refusés" FontSize="Medium" TextColor="#5271FF" FontAttributes="Bold" HorizontalOptions="Center"/>
+
+                <!-- DEBUT emploi refusés -->
+                <StackLayout x:Name="stackLayout2" VerticalOptions="Center" HorizontalOptions="Center" Spacing="20">
+                    <CollectionView x:Name="collection_jobs" ItemsSource="{Binding Emplois}" Margin="0">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Frame x:Name="job_item" BorderColor="Black" CornerRadius="5" WidthRequest="300">
+                                    <StackLayout Padding="10" Spacing="10" Margin="20,20,20,20">
+                                        <!--Contenu de chaque Frame-->
+                                        <Label Text="{Binding Titre}" FontAttributes="Bold" FontSize="20" HorizontalOptions="Center" />
+                                        <Frame BorderColor="Gray" BackgroundColor="#F0EC9B" CornerRadius="5" Padding="5" Margin="0,5" HorizontalOptions="Center">
+                                            <Label FontAttributes="Bold" LineBreakMode="WordWrap" Text="{Binding Salaire_horaire, StringFormat='{}{0} euros de l\&apos;heure'}" HorizontalOptions="Center" VerticalOptions="Center" />
+                                        </Frame>
+                                        <StackLayout>
+                                            <Label Text="Description de l'emploi :" FontAttributes="Bold" HorizontalOptions="Center" />
+                                            <Label Text="{Binding Description}" HorizontalOptions="Center" />
+                                        </StackLayout>
+                                    </StackLayout>
+                                </Frame>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+        <!-- FIN emploi refusés -->             
+
+        <!-- Footer -->
+        <StackLayout x:Name="stackLayout3" Orientation="Horizontal"
+              VerticalOptions="End" HorizontalOptions="Center" Spacing="80"
+              Grid.Row="1">
+            <!-- Icon buttons -->
+            <ImageButton x:Name="home" Source="home.png" Padding="0" Margin="0" HeightRequest="40" WidthRequest="40" BackgroundColor="Transparent" Clicked="Home_Clicked" />
+            <ImageButton x:Name="profil" Source="profil.png" Padding="0" Margin="0" HeightRequest="40" WidthRequest="40" BackgroundColor="Transparent" Clicked="Profil_Clicked" />
+        </StackLayout>
+    </Grid>
+</ContentPage>

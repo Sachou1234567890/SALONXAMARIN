@@ -62,10 +62,10 @@
                 <!--4 boutons pour les candidatures-->
                 <FlexLayout Direction="Row" JustifyContent="SpaceAround" AlignItems="Center" VerticalOptions="Center" Margin="0,10,0,20">
                     <Button Text="En attente" BackgroundColor="#F0EC9B" FontSize="Default" CornerRadius="10" WidthRequest="125" HeightRequest="40" Clicked="Postes_en_attente_Clicked" />
-                    <Button Text="Acceptées" BackgroundColor="#F0EC9B" FontSize="Default" CornerRadius="10" WidthRequest="125" HeightRequest="40" />
+                    <Button Text="Acceptées" BackgroundColor="#F0EC9B" FontSize="Default" CornerRadius="10" WidthRequest="125" HeightRequest="40" Clicked="Postes_acceptes_Clicked"/>
                 </FlexLayout>
                 <FlexLayout Direction="Row" JustifyContent="SpaceAround" AlignItems="Center" VerticalOptions="Center" Margin="0,10,0,20">
-                    <Button Text="Refusées" BackgroundColor="#F0EC9B" FontSize="Default" CornerRadius="10" WidthRequest="125" HeightRequest="40" />
+                    <Button Text="Refusées" BackgroundColor="#F0EC9B" FontSize="Default" CornerRadius="10" WidthRequest="125" HeightRequest="40" Clicked="Postes_refuses_Clicked" />
                     <!--<Button Text="Enregistrées" BackgroundColor="#F0EC9B" FontSize="Default" />-->
                     <Button Text="Enregistrées" BackgroundColor="#F0EC9B" FontSize="Default" CornerRadius="10" WidthRequest="125" HeightRequest="40" Clicked="Postes_enregistres_Clicked" />
                 </FlexLayout>

@@ -84,8 +84,9 @@ using Xamarin.Forms.Xaml;
                     {
                     // Handle the case where the record already exists, e.g., show a message
                         Console.WriteLine("une Wishlist avec le meme couple Id_emploi PersonId existe déjà");
-                    }
-                    else
+                        await DisplayAlert("Emploi déjà enregistré", "Emploi déjà enregistré", "OK");
+                }
+                else
                     {
                         // Update your Firebase database or perform any other actions as needed
                         await UpdateWishListInDatabase(this.wishlist);

@@ -37,11 +37,11 @@ namespace SALONXAMARIN.candidats_pages
             email.Text = currentUser.Email;
             societe.Text = currentUser.Societe;
             
+            this.currentUser = currentUser;
 
             // Call the asynchronous method to check the folder and set the label
             Device.BeginInvokeOnMainThread(async () => await CheckFolderAndSetLabelAsync());
 
-            this.currentUser = currentUser;
         }
 
         private async void OnRemplacerIconClicked(object sender, EventArgs e)
@@ -290,8 +290,7 @@ namespace SALONXAMARIN.candidats_pages
                 this.currentUser.Prenom = this.currentUser.Prenom ;
                 this.currentUser.Societe = this.currentUser.Societe ;
                 this.currentUser.Password = this.currentUser.Password ;
-                this.currentUser.CV_name = this.currentUser.CV_name ;
-                // this.currentUser.lettre_name = this.currentUser.lettre_name ;
+                this.currentUser.CV_name = this.currentUser.CV_name ;                
                                                     
                 await UpdateCVInDatabase(this.currentUser);                            
         }
@@ -327,7 +326,7 @@ namespace SALONXAMARIN.candidats_pages
                     // Save the file to Firebase Storage using the sanitized uploaded file name
                     await SaveToFirebaseStorage(pickedFileStream, SanitizeFileName(uploadedFileName));
 
-                    currentUser.CV_name = SanitizeFileName(uploadedFileName);
+                    this.currentUser.CV_name = SanitizeFileName(uploadedFileName);
 
                     AddCV();
 
@@ -368,6 +367,15 @@ namespace SALONXAMARIN.candidats_pages
         private async void Postes_en_attente_Clicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new Postes_en_attente(currentUser)); // Redirige vers la page du profil
+        }
+
+        private async void Postes_acceptes_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new Postes_acceptes(currentUser)); // Redirige vers la page du profil
+        }
+        private async void Postes_refuses_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new Postes_refuses(currentUser)); // Redirige vers la page du profil
         }        
         private async void Home_Clicked(object sender, EventArgs e)
         {

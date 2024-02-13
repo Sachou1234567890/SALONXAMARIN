@@ -105,6 +105,7 @@ namespace SALONXAMARIN
                 Societe = item.Object.Societe,
                 DateNaissance = item.Object.DateNaissance,
                 Password = item.Object.Password,
+                CV_name = item.Object.CV_name,
                 TicketType = item.Object.TicketType
                 // Ajoutez d'autres propriétés au besoin
             }).ToList();

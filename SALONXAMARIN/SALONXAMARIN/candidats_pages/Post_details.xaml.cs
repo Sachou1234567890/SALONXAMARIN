@@ -38,10 +38,14 @@ namespace SALONXAMARIN.candidats_pages
             this.selectedJob = selectedJob;
             this.candidature = new Candidature();
 
+            this.currentUser = currentUser;
+
             // Call the asynchronous method to check the cv folder and set the label
             Device.BeginInvokeOnMainThread(async () => await CheckFolderAndSetCVLabelAsync());
 
-            this.currentUser = currentUser;
+
+            Console.WriteLine("this.currentUser.CV_name = " + this.currentUser.CV_name);
+
 
             // Set the binding context for the button to the view model
             //postulerButton.SetBinding(Button.CommandProperty, nameof(viewModel.PostulerCommand));
@@ -56,8 +60,7 @@ namespace SALONXAMARIN.candidats_pages
             this.currentUser.Prenom = this.currentUser.Prenom;
             this.currentUser.Societe = this.currentUser.Societe;
             this.currentUser.Password = this.currentUser.Password;
-            this.currentUser.CV_name = this.currentUser.CV_name;
-            // this.currentUser.lettre_name = this.currentUser.lettre_name ;
+            this.currentUser.CV_name = this.currentUser.CV_name;            
 
             await UpdateCVInDatabase(this.currentUser);
         }
@@ -134,6 +137,8 @@ namespace SALONXAMARIN.candidats_pages
                 this.candidature.CV = currentUser.CV_name;
                 this.candidature.DatePostulation = DateTime.UtcNow;
 
+                this.uploadedCVName = currentUser.CV_name;
+
                 // vérifie si la lettre d'acceptation et le CV ont été uploadés
                 if (!string.IsNullOrWhiteSpace(this.uploadedLettreName) && !string.IsNullOrWhiteSpace(this.uploadedCVName))
                 {
@@ -153,6 +158,7 @@ namespace SALONXAMARIN.candidats_pages
                 }    
                 else
                 {
+                    Console.WriteLine("this.uploadedCVName = " + this.uploadedCVName);
                     await DisplayAlert("Message", "vous n'avez pas uploadé les documents necessaires (CV et Lettre d'aceptation)", "OK");
                     Console.WriteLine("vous n'avez pas uploadé les documents necessaires (CV et Lettre d'aceptation)");
                 }               
@@ -164,60 +170,6 @@ namespace SALONXAMARIN.candidats_pages
                 await DisplayAlert("Erreur", "Une erreur s'est produite lors de la soumission de votre candidature.", "OK");
             }
         }
-
-        //private async void AddToCandidatureOLd(object sender, EventArgs e)
-        //{
-        //    try
-        //    {
-        //        this.candidature.CandidatureId = Guid.NewGuid().ToString();
-        //        this.candidature.EmploiId = selectedJob.Id_emploi;
-        //        this.candidature.PersonId = currentUser.PersonId;
-        //        this.candidature.Statut = "en attente";
-        //        this.candidature.CV = currentUser.CV_name;
-
-        //        // vérifie si la lettre d'acceptation a été uploadée 
-        //        if (!string.IsNullOrWhiteSpace(uploadedLettreName))
-        //        {
-        //            this.candidature.Lettre = uploadedLettreName;
-        //        }
-        //        else
-        //        {                    
-        //            this.candidature.Lettre = "";
-        //        }
-
-        //        this.candidature.DatePostulation = DateTime.UtcNow;
-
-        //        // Check if a record with the same Id_emploi and PersonId already exists
-        //        if (await DoesCandidatureExist(this.candidature.EmploiId, this.candidature.PersonId))
-        //        {
-        //            // Handle the case where the record already exists
-        //            await DisplayAlert("Message", "Vous avez déjà postulé pour ce poste.", "OK");
-        //            Console.WriteLine("Une candidature avec le même couple EmploiId PersonId existe déjà.");
-        //        }
-        //        else
-        //        {
-        //            // Check if the letter has been uploaded
-        //            if (string.IsNullOrWhiteSpace(uploadedLettreName))
-        //            {
-        //                await DisplayAlert("Message", "Vous n'avez pas uploadé une lettre d'acceptation.", "OK");
-        //                Console.WriteLine("Vous n'avez pas uploadé une lettre d'acceptation.");
-        //            }
-        //            else
-        //            {
-        //                // Update your Firebase database or perform any other actions as needed
-        //                await UpdateCandidatureInDatabase(this.candidature);
-        //            }
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Console.WriteLine("Exception in AddToCandidature: " + ex.ToString());
-        //        // Optionally, display an error message to the user
-        //        await DisplayAlert("Erreur", "Une erreur s'est produite lors de la soumission de votre candidature.", "OK");
-        //    }
-        //}
-
-
         private async Task<bool> DoesCandidatureExist(string EmploiId, string personId)
         {
             try
@@ -553,32 +505,13 @@ namespace SALONXAMARIN.candidats_pages
                     _selectedJob = value;
                     OnPropertyChanged(nameof(SelectedJob));
                 }
-            }
-
-            //public ICommand PostulerCommand { get; private set; }
+            }            
 
             public PostDetailsViewModel(Emploi selectedJob)
             {
                 SelectedJob = selectedJob;
-                firebase = new FirebaseClient("https://projet-xamarin-default-rtdb.firebaseio.com/");
-
-                //PostulerCommand = new Command(async () => await ExecutePostulerCommand());
-            }
-
-            //private async Task ExecutePostulerCommand()
-            //{
-            //    // Update the 'postule' property to true
-            //    SelectedJob.Postule = true;
-
-            //    // Update the data in the Firebase Realtime Database
-            //    await firebase
-            //        .Child("Emplois")
-            //        .Child(SelectedJob.Id_emploi)
-            //        .PutAsync(SelectedJob);
-
-            //    // Notify the UI of the changes
-            //    OnPropertyChanged(nameof(SelectedJob));
-            //}
+                firebase = new FirebaseClient("https://projet-xamarin-default-rtdb.firebaseio.com/");                
+            }            
         }
     }
 }

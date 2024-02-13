@@ -98,7 +98,8 @@
                             </StackLayout>-->
                         </ContentView>
     <!--FIN LETTRE D'ACCEPTATION-->
-                        <Button Text="Postuler" x:Name="postuler_button" BackgroundColor="#5271FF" FontSize="Default" CornerRadius="10" WidthRequest="125" HeightRequest="40" Margin="0,0,0,20" Clicked="AddToCandidature" />
+                        <Button Text="Postuler" x:Name="postuler_button" BackgroundColor="#5271FF" FontSize="Default" CornerRadius="10"
+                                WidthRequest="125" HeightRequest="40" Margin="0,0,0,20" Clicked="AddToCandidature" />
                         
                         <!-- Petit icône pour ajouter au favoris -->
                         <Image Source="{FileImageSource File='wishlist.png'}" HorizontalOptions="End" VerticalOptions="End" Margin="0,0,5,0" HeightRequest="30" WidthRequest="30" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="1,1,AutoSize,AutoSize">
