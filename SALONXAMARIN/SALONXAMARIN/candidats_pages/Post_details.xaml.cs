@@ -233,7 +233,7 @@ namespace SALONXAMARIN.candidats_pages
                 if (response != null)
                 {
                     // File uploaded successfully
-                    await DisplayAlert("File Viewer", "File uploaded to Firebase Storage", "OK");
+                    //await DisplayAlert("File Viewer", "File uploaded to Firebase Storage", "OK");
                 }
                 else
                 {
@@ -244,7 +244,7 @@ namespace SALONXAMARIN.candidats_pages
             catch (Exception ex)
             {
                 // Handle any exceptions that may occur during the process
-                await DisplayAlert("Error", $"Catch Error: {ex.Message}", "OK");
+                //await DisplayAlert("Error", $"Catch Error: {ex.Message}", "OK");
             }
         }
 
@@ -265,7 +265,7 @@ namespace SALONXAMARIN.candidats_pages
                     //// Directly set the values under the specified key
                     //await currentUserRef.PutAsync(currentUser);
 
-                    await DisplayAlert("OK", "File has been uploaded.", "OK");
+                    //await DisplayAlert("OK", "File has been uploaded.", "OK");
                 }
                 else
                 {
